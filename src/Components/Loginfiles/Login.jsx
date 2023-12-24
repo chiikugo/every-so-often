@@ -10,7 +10,7 @@ const Login = () => {
 
     const handleLogin = () => {
         // Perform login logic here (dummy logic for now)
-        // For simplicity, let's navigate to a "/dashboard" page after a successful login
+        // This will be used to check if valid within an SQL database, blah blah
         navigate('/home');
     };
 

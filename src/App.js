@@ -8,6 +8,8 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          {/* Default route for login page */}
+          <Route index element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Landing />} />
           {/* Add more routes as needed */}

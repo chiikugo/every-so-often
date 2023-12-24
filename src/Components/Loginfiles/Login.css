@@ -1,5 +1,7 @@
-body {
-    background-color: #5f263e; /* Replace with your desired color value */
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }    
 }
 
 .container {
@@ -28,6 +30,10 @@ body {
     font-size: 36px;
     font-weight: 700;
     
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
 .underline {
@@ -99,4 +105,13 @@ margin: 60px auto;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
+
+    transition: transform 0.5s, background-color 0.5s;
+}
+
+.submit:hover {
+    transform: translateY(-10px);
+    background-color: rgb(255, 190, 220);
+  
+
 }

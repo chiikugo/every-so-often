@@ -1,3 +1,46 @@
-body {
+/* Landing.css */
+
+.containertwo {
+    width: 100%;
+    min-height: 100vh;
+    background: #f8e5ed;
 }
+
+.headertwo {
+    
+}
+
+.texttwo {
   
+}
+
+
+.navbar {
+    padding: 1px 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fc67a5; 
+    
+}
+
+.navbar ul img {
+    transition: 0.5s;
+}
+
+.navbar ul img:hover {
+    transform: translateY(-10px);
+}
+
+.navbar ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 100px;
+    font-size: 30px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 4;
+}
