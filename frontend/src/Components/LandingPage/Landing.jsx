@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Landing.css';
 import { useNavigate } from 'react-router-dom';
 
+import axios from 'axios';
 import elephants from '../Assets/Untitled_Artwork16.PNG'
+import Contactpopup from '../PopUps/Contactpopup';
 
 const Landing = () => {
+    const [buttonPopup, setButtonPopup] = useState(false);
 
     const navigate = useNavigate();
     /*
@@ -26,7 +29,19 @@ const Landing = () => {
                         <li><a>Suggestion</a></li>
                     </ul>
                 </nav>
-                
+                <div className = "buttons">
+                    <div className = "contacts">
+                        <button className = "contactButton" onClick={ () => setButtonPopup(true)}>
+                            Contacts
+                            
+                        </button>
+                        <Contactpopup trigger= {buttonPopup} setTrigger = {setButtonPopup}>
+
+                        </Contactpopup>
+
+                    </div>
+
+                </div>
 
             </div>
 

@@ -44,3 +44,11 @@
     color: #333;
     font-weight: 4;
 }
+
+.contacts {
+    display: flex;
+    margin: 110px 25px;
+
+
+    border-radius: 6px;
+}
