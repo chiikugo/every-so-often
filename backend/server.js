@@ -11,7 +11,7 @@ app.use(express.json()); // Parse JSON request bodies
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
+    pa 5432,ssword: "",
     database: "contacts"
 });
 

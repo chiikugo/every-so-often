@@ -18,20 +18,16 @@ const Login = () => {
     return (
         <div className='container'>
             <div className='header'>
-                {/* This is a JSX comment 
                 <div className="text" id="elephant">
                     <img src={elephant} alt="Elephant"/>
                 </div>
-                */} 
                 <div className="underline"></div>
             </div>
             <div className="inputs">
-                <div className="input">
-                    <img src={email} alt=""/>
+                <div className="inputBox">
                     <input type="email" placeholder='Email'/>
                 </div>
-                <div className="input">
-                    <img src=" " alt=""/>
+                <div className="inputBox">
                     <input type="password" placeholder='Password'/>
                 </div>
             </div>

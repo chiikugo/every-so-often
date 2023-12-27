@@ -59,17 +59,14 @@
     gap: 25px;
 }
 
-.inputs img {
-    margin: 0px 30px;
-}
-
-.input {
+.inputBox {
     display: flex;
     align-items: center;
     margin: auto;
     background: #df327a;
     border-radius: 6px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+    width: 90%;
 }
 
 input::placeholder {
@@ -78,12 +75,7 @@ input::placeholder {
     opacity: 80%;
 }
 
-.input img {
-    margin: 0px 30px;
-
-}
-
-.input input {
+.inputBox input {
     background: transparent;
     border: none;
     outline: none;
