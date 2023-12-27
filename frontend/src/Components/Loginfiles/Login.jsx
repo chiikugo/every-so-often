@@ -18,8 +18,8 @@ const Login = () => {
     return (
         <div className='container'>
             <div className='header'>
-                <div className="text" id="elephant">
-                    <img src={elephant} alt="Elephant"/>
+                <div className="elephant">
+                    <img src={elephant} alt="Elephant" className="elephantimg"/>
                 </div>
                 <div className="underline"></div>
             </div>

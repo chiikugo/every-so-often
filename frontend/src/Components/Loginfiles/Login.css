@@ -4,13 +4,16 @@
     100%   { transform: translate(0, -0px); }    
 }
 
+body {
+    overflow: hidden;
+  }
 
 .container {
     display: flex;
     flex-direction: column;
     margin: auto;
     justify-content: center;
-    margin-top: 10vh;
+    margin-top: 100px;
     width: 90vw;
     height: 80vh;
     background-color: #f7e8ee;
@@ -25,22 +28,20 @@
     align-items: center;
     gap: 9px;
     margin-top: 30px;
-
+    border: 5px solid darkblue;
 }
 
-
-.text {
+.elephant {
+    display: block;
     color: #ffaace;
-    font-size: 36px;
-    font-weight: 700;
-
-    width: fit-content;
-    height: auto;
-    
     animation-name: floating;
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
+}
+
+.elephantimg{
+    
 }
 
 .underline {
@@ -49,7 +50,6 @@
     height: 6px;
     background-color: #ffaace;
     border-radius: 9px;
-
 }
 
 .inputs {
@@ -111,6 +111,4 @@ margin: 60px auto;
 .submit:hover {
     transform: translateY(-10px);
     background-color: rgb(255, 190, 220);
-  
-
 }
