@@ -1,52 +1,50 @@
 const express = require("express");
-const mysql = require('mysql');
+const { Client } = require('pg');
 const cors = require('cors');
-//express, sql, cors
-
 
 const app = express();
 app.use(cors());
 app.use(express.json()); // Parse JSON request bodies
 
-const db = mysql.createConnection({
+const db = new Client({
     host: "localhost",
-    user: "root",
-    pa 5432,ssword: "",
+    user: "chikuokechukwu",
+    port: 5432,
+    password: "totodile89",
     database: "contacts"
 });
 
-// ^ basic connection setup, parameters of database in XAMPP 
+db.connect();
 
-//  v  - Contact addition
-app.post('/addContact', (req, res) => {
+// Add a new route to fetch contacts, used to retrieve contacts
+app.post('/addContact', async (req, res) => {
     const { name, frequency } = req.body;
 
-    const sql = 'INSERT INTO info (name, frequency) VALUES (?, ?)';
-    db.query(sql, [name, frequency], (err, result) => {
-        if (err) {
-            console.error('Error adding contact:', err);
-            res.status(500).json({ error: 'Error adding contact' });
-        } else {
-            res.status(200).json({ message: 'Contact added successfully' });
-        }
-    });
+    try {
+        // Use parameterized query to prevent SQL injection
+        const sql = 'INSERT INTO contact (name, frequency) VALUES ($1, $2) RETURNING *';
+        const result = await db.query(sql, [name, frequency]);
+
+        res.status(200).json({ message: 'Contact added successfully', data: result.rows[0] });
+    } catch (error) {
+        console.error('Error adding contact:', error);
+        res.status(500).json({ error: 'Error adding contact' });
+    }
 });
 
-
-
-// Add a new route to fetch contacts this should be used to retrieve contacts
-app.get('/contacts', (req, res) => {
-    const sql = 'SELECT * FROM info';
-    db.query(sql, (err, result) => {
-        if (err) {
-            console.error('Error fetching contacts:', err);
-            res.status(500).json({ error: 'Error fetching contacts' });
-        } else {
-            res.status(200).json(result);
-        }
-    });
+// Add a new route to fetch contacts
+app.get('/contacts', async (req, res) => {
+    try {
+        const result = await db.query('SELECT * FROM contact');
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error('Error fetching contacts:', error);
+        res.status(500).json({ error: 'Error fetching contacts' });
+    }
 });
 
-app.listen(8081, () => {
-    console.log("Listening on port 8081");
+const PORT = process.env.PORT || 8081;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

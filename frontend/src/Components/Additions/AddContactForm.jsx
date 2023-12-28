@@ -3,36 +3,29 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const AddContactForm = ({ onAddContact }) => {
-  const [name, setName] = useState('');
-  const [frequency, setFrequency] = useState('');
+    const [name, setName] = useState('');
+    const [frequency, setFrequency] = useState('');
 
-  const handleAddContact = async () => {
-    try {
-      const response = await axios.post('http://localhost:8081/addContact', {
-        name,
-        frequency,
-      });
-      onAddContact(); // Notify the parent component that a new contact has been added
-      console.log(response.data); // Log the server response
-    } catch (error) {
-      console.error('Error adding contact:', error);
-    }
-  };
+    const handleAddContact = async () => {
+        try {
+            // Parse frequency as an integer
+            const frequencyValue = parseInt(frequency, 10);
 
-  return (
-    <div>
-      <h2>Add Contact</h2>
-      <div>
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </div>
-      <div>
-        <label>Frequency:</label>
-        <input type="text" value={frequency} onChange={(e) => setFrequency(e.target.value)} />
-      </div>
-      <button onClick={handleAddContact}>Add Contact</button>
-    </div>
-  );
+            // Ensure data is sent as an object with the correct types
+            await axios.post('http://localhost:8081/addContact', { name, frequency: frequencyValue });
+            onAddContact(); // Trigger the callback to refresh contacts
+        } catch (error) {
+            console.error('Error adding contact:', error);
+        }
+    };
+
+    return (
+        <div className="add-contact-form">
+            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+            <input type="text" placeholder="Frequency" value={frequency} onChange={(e) => setFrequency(e.target.value)} />
+            <button onClick={handleAddContact}>Add Contact</button>
+        </div>
+    );
 };
 
 export default AddContactForm;
