@@ -1,27 +1,29 @@
 /* Landing.css */
 
-.containertwo {
+.containerLogin {
     width: 100%;
     min-height: 100vh;
     background: #f8e5ed;
 }
 
-.headertwo {
+.headerLogin {
     
 }
 
-.texttwo {
+.textLogin {
   
 }
 
 
 .navbar {
-    padding: 1px 1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: #fc67a5; 
-    
+    justify-content: center;
+    background-color: #de6195; 
+    padding-bottom: 5px;
+    box-shadow: 2px 2px 5px #000000;
+    width: 100%;
+
 }
 
 .navbar ul img {
@@ -32,23 +34,30 @@
     transform: translateY(-10px);
 }
 
+#elephantLogo{
+    margin-bottom: -10px;
+}
+
 .navbar ul li {
     display: inline-block;
     list-style: none;
     margin: 10px 100px;
     font-size: 30px;
+
 }
 
-.navbar ul li a {
+.navBarText {
     text-decoration: none;
-    color: #333;
-    font-weight: 4;
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    text-shadow: 1px 1px 4px black;
 }
 
 .contacts {
     display: flex;
     margin: 110px 25px;
-
-
     border-radius: 6px;
+    font-size: 50px;
+    font-weight: bold;
+justify-content: center;
 }

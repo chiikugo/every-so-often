@@ -37,20 +37,20 @@ const Landing = () => {
     };
 
     return (
-        <div className="containertwo">
-            <div className="headertwo">
-                <div className="texttwo">
+        <div className="containerLogin">
+            <div className="headerLogin">
+                <div className="textLogin">
                     <nav className="navbar">
                         <ul>
-                            <img src={elephants} alt="elephantlogo" onClick={homeReload} />
+                            <img id = "elephantLogo" src={elephants} alt="elephantlogo" onClick={homeReload} />
                             <li>
-                                <a>Contacts</a>
+                                <a className="navBarText">Contacts</a>
                             </li>
                             <li>
-                                <a>Journal</a>
+                                <a className="navBarText">Journal</a>
                             </li>
                             <li>
-                                <a>Suggestion</a>
+                                <a className="navBarText">Suggestion</a>
                             </li>
                         </ul>
                     </nav>

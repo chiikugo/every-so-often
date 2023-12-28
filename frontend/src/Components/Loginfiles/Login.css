@@ -28,7 +28,7 @@ body {
     align-items: center;
     gap: 9px;
     margin-top: 30px;
-    border: 5px solid darkblue;
+    margin-bottom: 40px;
 }
 
 .elephant {
@@ -41,7 +41,9 @@ body {
 }
 
 .elephantimg{
-    
+    max-width: 900px;
+    width: 90%;
+    margin-left: 25px;
 }
 
 .underline {
@@ -57,32 +59,43 @@ body {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    width: 50%;
+    width: 50%;   
 }
 
 .inputBox {
     display: flex;
     align-items: center;
     margin: auto;
-    background: #df327a;
+    background: #f03784;
     border-radius: 6px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
-    width: 90%;
-    height: 50px;
+    box-shadow: 2px 2px 5px rgb(0, 0, 0);
+    width: 100%;
+    height: 60px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 input::placeholder {
-    color: white;
+    color: rgb(255, 255, 255);
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    opacity: 80%;
-}
+    opacity: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;}
 
 .inputBox input {
     background: transparent;
     border: none;
     outline: none;
     color: #ffffff;
-    font-size: 19px;
+    font-size: 21px;
+
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
 }
 
 .submit-container {
