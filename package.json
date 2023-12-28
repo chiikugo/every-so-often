@@ -2,7 +2,9 @@
     "name": "every_so_often",
     "version": "1.0.0",
     "scripts": {
-      "start": "concurrently \"cd frontend && npm start\" \"cd backend && node server.js\""
+        "start": "concurrently \"cd frontend && npm start\" \"cd backend && nodemon server.js\""
+    },
+    "dependencies": {
+        "pg": "^8.11.3"
     }
-  }
-  
+}

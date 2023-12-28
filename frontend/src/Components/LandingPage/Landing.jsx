@@ -9,9 +9,9 @@ import AddContactForm from '../Additions/AddContactForm';
 
 const Landing = () => {
     const [buttonPopup, setButtonPopup] = useState(false);
-    //pop up button declaration
     const [contacts, setContacts] = useState([]);
-    //contact fetching
+    const navigate = useNavigate();
+
     useEffect(() => {
         fetchContacts();
     }, []);
@@ -26,11 +26,9 @@ const Landing = () => {
     };
 
     const handleAddContact = async () => {
-        await fetchContacts(); // Await the fetchContacts function
-        setButtonPopup(false); // Close the popup after adding a new contact
+        await fetchContacts();
+        setButtonPopup(false);
     };
-    //reroute function
-    const navigate = useNavigate();
 
     const homeReload = () => {
         navigate('/home');
@@ -42,7 +40,7 @@ const Landing = () => {
                 <div className="textLogin">
                     <nav className="navbar">
                         <ul>
-                            <img id = "elephantLogo" src={elephants} alt="elephantlogo" onClick={homeReload} />
+                            <img id="elephantLogo" src={elephants} alt="elephantlogo" onClick={homeReload} />
                             <li>
                                 <a className="navBarText">Contacts</a>
                             </li>
@@ -61,7 +59,6 @@ const Landing = () => {
                             </div>
                             {buttonPopup && (
                                 <Contactpopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                                    {/* Render the list inside Contactpopup */}
                                     <ul>
                                         {contacts.map((contact) => (
                                             <li key={contact.id}>
@@ -69,7 +66,6 @@ const Landing = () => {
                                             </li>
                                         ))}
                                     </ul>
-                                    {/* Add the AddContactForm component for adding contacts */}
                                     <AddContactForm onAddContact={handleAddContact} />
                                 </Contactpopup>
                             )}
