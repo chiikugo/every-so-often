@@ -66,9 +66,10 @@ body {
     display: flex;
     align-items: center;
     margin: auto;
-    background: #f03784;
+    background: #ff68a7;
+    opacity: 0.85;
     border-radius: 6px;
-    box-shadow: 2px 2px 5px rgb(0, 0, 0);
+    box-shadow: 2px 2px 5px rgb(255, 153, 201);
     width: 100%;
     height: 60px;
     max-width: 600px;
@@ -111,12 +112,12 @@ margin: 60px auto;
     width: 220px;
     height: 59px;
     color: rgb(255, 255, 255);
-    background: #c0306c;
+    background: #ffaace;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 1);
+    box-shadow: 0px 2px 5px rgb(255, 153, 201);
 
     transition: transform 0.5s, background-color 0.5s;
 }
@@ -124,4 +125,22 @@ margin: 60px auto;
 .submit:hover {
     transform: translateY(-10px);
     background-color: rgb(255, 190, 220);
+}
+
+.blob {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 500px;
+    height: 500px;
+    z-index: -1;
+}
+
+.blobdos {
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    width: 500px;
+    height: 500px;
+    z-index: -1;
 }
