@@ -38,43 +38,48 @@ const Landing = () => {
         <div className="containerLogin">
             <div className="headerLogin">
                 <div className="textLogin">
-                    <nav className="navbar">
-                        <ul>
-                            <img id="elephantLogo" src={elephants} alt="elephantlogo" onClick={homeReload} />
-                            <li>
-                                <a className="navBarText">Contacts</a>
-                            </li>
-                            <li>
-                                <a className="navBarText">Journal</a>
-                            </li>
-                            <li>
-                                <a className="navBarText">Suggestion</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div className="buttons">
-                        <div className="contacts">
-                            <div className="contactButton" onClick={() => setButtonPopup(true)}>
-                                Contacts
-                            </div>
-                            {buttonPopup && (
-                                <Contactpopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                                    <ul>
-                                        {contacts.map((contact) => (
-                                            <li key={contact.id}>
-                                                {contact.name} - {contact.frequency}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <AddContactForm onAddContact={handleAddContact} />
-                                </Contactpopup>
-                            )}
-                        </div>
-                    </div>
-                </div>
+                <header>
+                <img id="logo" src={elephants} alt="elephantlogo" onClick={homeReload} />
+                <nav>
+                <ul class="nav__links">
+                    <li><a href="#">Contacts</a></li>
+                    <li><a href="#">Journal</a></li>
+                </ul>
+            </nav>
+            <a class="cta" href="#">Suggestions</a>
+            <p class="menu cta">Menu</p>
+        </header>
+        <div class="overlay">
+            <a class="close">&times;</a>
+            <div class="overlay__content">
+                <a href="#">Contacts</a>
+                <a href="#">Journal</a>
             </div>
         </div>
-    );
+        <script type="text/javascript" src="mobile.js"></script>
+        <div className="buttons">
+            <div className="contacts">
+                <div className="contactButton" onClick={() => setButtonPopup(true)}>
+                    Contacts
+                </div>
+                {buttonPopup && (
+                    <Contactpopup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                        <ul>
+                            {contacts.map((contact) => (
+                                <li key={contact.id}>
+                                    {contact.name} - {contact.frequency}
+                                </li>
+                            ))}
+                        </ul>
+                        <AddContactForm onAddContact={handleAddContact} />
+                    </Contactpopup>
+                )}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+);
 };
 
 export default Landing;

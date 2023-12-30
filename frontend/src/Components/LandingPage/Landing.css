@@ -1,63 +1,138 @@
-/* Landing.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
-.containerLogin {
-    width: 100%;
-    min-height: 100vh;
-    background: #f8e5ed;
-}
-
-.headerLogin {
-    
-}
-
-.textLogin {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
   
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: #c0306c;
+    font-size: 30px;
 }
 
-
-.navbar {
+  #logo {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  #logo:hover {
+    transform: translateY(-5px); 
+  }
+  
+  .nav__links a,
+  .cta,
+  .overlay__content a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    color: #edf0f1;
+    text-decoration: none;
+  }
+  
+  .nav__links {
+    list-style: none;
     display: flex;
+  }
+  
+  .nav__links li {
+    padding: 0px 20px;
+  }
+  
+  .nav__links li a {
+    transition: color 0.3s ease 0s;
+  }
+  
+  .nav__links li a:hover {
+    color: #f0a0c1;
+  }
+  
+  .cta {
+    padding: 9px 25px;
+    background-color: #f6428d;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease 0s;
+    box-shadow: 2px 2px 5px #000000;
+    font-size: 20px;
+}
+  
+  .cta:hover {
+    background-color: #c0346e;
+    ;
+  }
+  
+  /* Mobile Nav */
+  
+  .menu {
+    display: none;
+  }
+  
+  .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: #24252a;
+    overflow-x: hidden;
+    transition: width 0.5s ease 0s;
+  }
+  
+  .overlay--active {
+    width: 100%;
+  }
+  
+  .overlay__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #de6195; 
-    padding-bottom: 5px;
-    box-shadow: 2px 2px 5px #000000;
-    width: 100%;
-
-}
-
-.navbar ul img {
-    transition: 0.5s;
-}
-
-.navbar ul img:hover {
-    transform: translateY(-10px);
-}
-
-#elephantLogo{
-    margin-bottom: -10px;
-}
-
-.navbar ul li {
-    display: inline-block;
-    list-style: none;
-    margin: 10px 100px;
-    font-size: 30px;
-
-}
-
-.navBarText {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-weight: 900;
-    text-shadow: 1px 1px 4px black;
-}
-
-.contacts {
-    display: flex;
-    margin: 110px 25px;
-    border-radius: 6px;
-    font-size: 50px;
-    font-weight: bold;
-justify-content: center;
-}
+  }
+  
+  .overlay a {
+    padding: 15px;
+    font-size: 36px;
+    display: block;
+    transition: color 0.3s ease 0s;
+  }
+  
+  .overlay a:hover,
+  .overlay a:focus {
+    color: #0088a9;
+  }
+  .overlay .close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: #edf0f1;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay a {
+      font-size: 20px;
+    }
+    .overlay .close {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
+  
+  @media only screen and (max-width: 800px) {
+    .nav__links,
+    .cta {
+      display: none;
+    }
+    .menu {
+      display: initial;
+    }
+  }
+  
