@@ -1,12 +1,4 @@
 /* Landing.css */
-@font-face {
-    font-family: "motley-forces";
-    src: url(../Assets/MotleyForcesRegular-w1rZ3.ttf);
-}
-* {
-font-family: "motley-forces";
-}
-
 
 .containerLogin {
     width: 100%;
@@ -14,22 +6,32 @@ font-family: "motley-forces";
     background: #f8e5ed;
 }
 
-.headerLogin {
-    
-}
-
-.textLogin {
+  #logo {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
   
-}
-
-
-.navbar {
+  #logo:hover {
+    transform: translateY(-5px); 
+  }
+  
+  .nav__links a,
+  .cta,
+  .overlay__content a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    color: #edf0f1;
+    text-decoration: none;
+  }
+  
+  .nav__links {
+    list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #de6195; 
     padding-bottom: 5px;
-    box-shadow: 2px 2px 5px #ffcaec;
+    box-shadow: 2px 2px 5px #000000;
     width: 100%;
 
 }
@@ -58,38 +60,14 @@ font-family: "motley-forces";
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-weight: 900;
-    text-shadow: 1px 1px 4px rgb(255, 176, 176);
+    text-shadow: 1px 1px 4px black;
 }
 
 .contacts {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     margin: 110px 25px;
     border-radius: 6px;
     font-size: 50px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
-}
-
-.contactButton {
-    width: 240px;
-    height: 70px;
-    background-color: #ffaace;
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-    border: none;
-    text-align: center;
-    margin: 150px 25px;
-    border-radius: 6px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.contactButton:hover {
-    background-color: rgb(255, 190, 220);
-    transform: translateY(-5px);
+justify-content: center;
 }

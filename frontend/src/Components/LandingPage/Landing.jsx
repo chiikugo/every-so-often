@@ -52,28 +52,23 @@ const Landing = () => {
                             </li>
                         </ul>
                     </nav>
-
                     <div className="buttons">
-                        <div className="contactButtonOne">
-
-                        
-                            <div className="contacts">
-                                <div className="contactButton" onClick={() => setButtonPopup(true)}>
-                                    Contacts
-                                </div>
-                                {buttonPopup && (
-                                    <Contactpopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                                        <ul>
-                                            {contacts.map((contact) => (
-                                                <li key={contact.id}>
-                                                    {contact.name} - {contact.frequency}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <AddContactForm onAddContact={handleAddContact} />
-                                    </Contactpopup>
-                                )}
-                        </div>
+                        <div className="contacts">
+                            <div className="contactButton" onClick={() => setButtonPopup(true)}>
+                                Contacts
+                            </div>
+                            {buttonPopup && (
+                                <Contactpopup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                                    <ul>
+                                        {contacts.map((contact) => (
+                                            <li key={contact.id}>
+                                                {contact.name} - {contact.frequency}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <AddContactForm onAddContact={handleAddContact} />
+                                </Contactpopup>
+                            )}
                         </div>
                     </div>
                 </div>
