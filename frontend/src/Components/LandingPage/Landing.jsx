@@ -34,6 +34,11 @@ const Landing = () => {
         navigate('/home');
     };
 
+
+    const contactReload = () => {
+        navigate('/contacts');
+    };
+
     return (
         <div className="containerLogin">
             <div className="headerLogin">
@@ -42,7 +47,7 @@ const Landing = () => {
                         <ul>
                             <img id="elephantLogo" src={elephants} alt="elephantlogo" onClick={homeReload} />
                             <li>
-                                <a className="navBarText">Contacts</a>
+                                <a className="navBarText" onClick={contactReload}>Contacts</a>
                             </li>
                             <li>
                                 <a className="navBarText">Journal</a>
