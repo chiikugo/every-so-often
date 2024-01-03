@@ -4,13 +4,11 @@ import './ContactPage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import elephants from '../Assets/Untitled_Artwork16.PNG';
-import Contactpopup from '../PopUps/Contactpopup';
-import AddContactForm from '../Additions/AddContactForm';
 
 
 const ContactPage = () => {
-    const [buttonPopup, setButtonPopup] = useState(false);
-    const [contacts, setContacts] = useState([]);
+    const [setButtonPopup] = useState(false);
+    const [setContacts] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,13 +29,21 @@ const ContactPage = () => {
         setButtonPopup(false);
     };
     const homeReload = () => {
-        navigate('/home');
+        navigate('../home');
     };
 
 
     const contactReload = () => {
         navigate('/contacts');
     };
+
+    const journalReload= ()=>{
+        navigate('../journal');
+    }
+
+    const suggestionReload= ()=>{
+        navigate('../suggestion');
+    }
 
 
     return (
@@ -51,10 +57,10 @@ const ContactPage = () => {
                                 <a className="navBarText" onClick={contactReload}>Contacts</a>
                             </li>
                             <li>
-                                <a className="navBarText">Journal</a>
+                                <a className="navBarText" onClick = {journalReload}>Journal</a>
                             </li>
                             <li>
-                                <a className="navBarText">Suggestion</a>
+                                <a className="navBarText" onClick = {suggestionReload}>Suggestion</a>
                             </li>
                         </ul>
                     </nav>
