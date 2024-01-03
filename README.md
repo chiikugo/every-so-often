@@ -9,4 +9,4 @@ connects relationships through paired profiles that exist as a tree timeline wit
 ![overview](https://github.com/chiikugo/every-so-often/assets/44552816/3ecdb918-8023-4208-902d-d8633185e2c2)
 
 ## made with ❤️
-chiku, bash, noel
+chiku, bash, noel, amy, os
