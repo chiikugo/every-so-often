@@ -5,6 +5,8 @@
         "start": "concurrently \"cd frontend && npm start\" \"cd backend && nodemon server.js\""
     },
     "dependencies": {
+        "concurrently": "^8.2.2",
+        "nodemon": "^3.0.2",
         "pg": "^8.11.3"
     }
 }
