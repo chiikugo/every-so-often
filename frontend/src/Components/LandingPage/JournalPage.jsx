@@ -1,17 +1,44 @@
 // Landing.jsx
-import React from 'react';
+import React, { useState, FC } from 'react';
 import './JournalPage.css';
 import { useNavigate } from 'react-router-dom';
 import elephants from '../Assets/Untitled_Artwork16.PNG';
 
 
 const JournalPage = () => {
+    const [notes, setNotes] = useState([
+        {
+            id: 1,
+            title: "entry 1",
+            content: "content 1"
+        },
+        {
+            id: 2,
+            title: "entry 2",
+            content: "content 2"
+        },
+        {
+            id: 3,
+            title: "entry 3",
+            content: "content 3"
+        }     
+    ]);
+
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+
+    const handleSubmit = (event) => {
+       event.preventDefault();
+       console.log("title: ", title)
+       console.log("content: ", content)
+      };
+      
 
     const navigate = useNavigate();
 
    
     const homeReload = () => {
-        navigate('../');
+        navigate('../home');
     };
 
 
@@ -46,7 +73,47 @@ const JournalPage = () => {
                             </li>
                         </ul>
                     </nav>
-                <div className="Placeholder">
+                <div className="journalBody">
+                    <form className = "NoteForm"
+                        onSubmit={(e) => handleSubmit(e)}
+                    >
+                        <input
+                        value={title} 
+                        onChange={(e) =>
+                        setTitle(e.target.value)}
+                        placeholder= "subject" required>
+                        </input>
+                        <textarea 
+                        value={content} 
+                        onChange={(e) =>
+                        setContent(e.target.value)}
+                        placeholder="body"
+                        rows={10}
+                        required>
+
+                        </textarea>
+                        <button className="publish">
+                            Add Entry
+
+                        </button>
+                    </form>
+                    <div className='journalGrid'>
+                        {notes.map((note)=> (
+                            <div className='journalItem'>
+                            <div className='journalHeader'>
+                                <button>x
+
+                                </button>
+                                <h2>{note.title}</h2>
+                                <p>{note.content}</p>
+
+                            </div>
+                            
+                        </div>
+                        ))}
+                        
+
+                    </div>
                     <p>
                         we're in journal page hehe
                     </p>

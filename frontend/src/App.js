@@ -13,7 +13,7 @@ function App() {
       <div className="App">
         <Routes>
           {/* Default route for login page */}
-          <Route index element={<Login />} />
+          <Route index element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Landing />} />
           <Route path="/contacts" element={<ContactPage/>}/>
