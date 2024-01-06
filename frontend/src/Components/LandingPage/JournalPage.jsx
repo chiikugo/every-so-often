@@ -48,6 +48,42 @@ const JournalPage = () => {
     setContent("");
   };
 
+  const handleUpdateNote = (event) => {
+    event.preventDefault();
+
+    if (!selectedNote) {
+      return;
+    }
+
+    const updatedNote = {
+      id: selectedNote.id,
+      title: title,
+      content: content,
+    };
+
+    const updatedNotesList = notes.map((note) =>
+      note.id === selectedNote.id ? updatedNote : note
+    );
+
+    setNotes(updatedNotesList);
+    setTitle("");
+    setContent("");
+    setSelectedNote(null);
+  };
+
+  const handleCancel = () => {
+    setTitle("");
+    setContent("");
+    setSelectedNote(null);
+  };
+
+  const deleteNote = (event, noteId) => {
+    event.stopPropagation();
+
+    const updatedNotes = notes.filter((note) => note.id !== noteId);
+    setNotes(updatedNotes);
+  };
+
   const navigate = useNavigate();
 
   const homeReload = () => {
@@ -96,7 +132,12 @@ const JournalPage = () => {
             </ul>
           </nav>
           <div className="journalBody">
-            <form className="NoteForm" onSubmit={handleAddNote}>
+            <form
+              className="NoteForm"
+              onSubmit={(event) =>
+                selectedNote ? handleUpdateNote(event) : handleAddNote(event)
+              }
+            >
               <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -109,7 +150,15 @@ const JournalPage = () => {
                 placeholder="body"
                 rows={10}
                 required
-              />
+              ></textarea>
+              {selectedNote ? (
+                <div className="edit-button">
+                  <button type="submit">Save</button>
+                  <button onClick={handleCancel}>Cancel</button>
+                </div>
+              ) : (
+                <button type="submit">Add Note</button>
+              )}
               <button className="publish">Add Entry</button>
             </form>
             <div className="journalGrid">
@@ -120,7 +169,7 @@ const JournalPage = () => {
                   key={note.id}
                 >
                   <div className="journalHeader">
-                    <button>x</button>
+                    <button onClick={(e) => deleteNote(e, note.id)}>x</button>
                     <h2>{note.title}</h2>
                     <p>{note.content}</p>
                   </div>

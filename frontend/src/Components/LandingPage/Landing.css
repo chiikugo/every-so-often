@@ -3,10 +3,10 @@
     font-family: "motley-forces";
     src: url(../Assets/MotleyForcesRegular-w1rZ3.ttf);
 }
-* {
-font-family: "motley-forces";
-}
 
+* {
+    font-family: "motley-forces";
+}
 
 .containerLogin {
     width: 100%;
@@ -22,16 +22,12 @@ font-family: "motley-forces";
   
 }
 
-
 .navbar {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #de6195; 
-    padding-bottom: 5px;
-    box-shadow: 2px 2px 5px #ffcaec;
-    width: 100%;
-
+    background-color: #f03784;
+    padding: 30px 10%;
 }
 
 .navbar ul img {
@@ -42,8 +38,14 @@ font-family: "motley-forces";
     transform: translateY(-10px);
 }
 
-#elephantLogo{
+#elephantLogo {
+    cursor: pointer;
+    transition: 0.5s;
     margin-bottom: -10px;
+}
+
+#elephantLogo:hover {
+    transform: translateY(-10px);
 }
 
 .navbar ul li {
@@ -51,14 +53,14 @@ font-family: "motley-forces";
     list-style: none;
     margin: 10px 100px;
     font-size: 30px;
-
 }
 
 .navBarText {
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: #ffffff;
+    font-size: 35px;
     font-weight: 900;
-    text-shadow: 1px 1px 4px rgb(255, 176, 176);
+    text-shadow: 1px 1px 4px black;
 }
 
 .contacts {
@@ -70,7 +72,7 @@ font-family: "motley-forces";
     border-radius: 6px;
     font-size: 50px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: black;
 }
 
 .contactButton {
@@ -92,4 +94,77 @@ font-family: "motley-forces";
 .contactButton:hover {
     background-color: rgb(255, 190, 220);
     transform: translateY(-5px);
+}
+
+/* Mobile Nav */
+
+.menu {
+    display: none;
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: #a04068;
+    overflow-x: hidden;
+    transition: width 0.5s ease 0s;
+}
+
+.overlay--active {
+    width: 100%;
+}
+
+.overlay__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay a {
+    padding: 15px;
+    font-size: 36px;
+    display: block;
+    transition: color 0.3s ease 0s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #c37495;
+}
+
+.overlay .close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: #edf0f1;
+    cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px;
+    }
+    .overlay .close {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    .nav__links,
+    .cta {
+        display: none;
+    }
+    .menu {
+        display: initial;
+    }
 }
