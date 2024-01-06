@@ -1,12 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
 @keyframes floating {
-    0% { transform: translate(0,  0px); }
-    50%  { transform: translate(0, 15px); }
-    100%   { transform: translate(0, -0px); }    
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, 15px);
+    }
+
+    100% {
+        transform: translate(0, -0px);
+    }
 }
 
 body {
     overflow: hidden;
-  }
+}
 
 .container {
     display: flex;
@@ -16,7 +26,7 @@ body {
     margin-top: 100px;
     width: 90vw;
     height: 80vh;
-    background-color: #f7e8ee;
+    background-color: #e8f6f7;
     border-radius: 25px;
     box-shadow: 2px 2px 5px #ffaace;
     align-items: center;
@@ -40,14 +50,15 @@ body {
     animation-timing-function: ease-in-out;
 }
 
-.elephantimg{
+.elephantimg {
     max-width: 900px;
     width: 90%;
     margin-left: 25px;
 }
 
 .underline {
-    margin-top: 40px;;
+    margin-top: 40px;
+    ;
     width: 70vw;
     height: 6px;
     background-color: #ffaace;
@@ -59,7 +70,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    width: 50%;   
+    width: 50%;
 }
 
 .inputBox {
@@ -80,11 +91,12 @@ body {
 
 input::placeholder {
     color: rgb(255, 255, 255);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    opacity: 60%;
+    font-family: "Montserrat", sans-serif;
+    opacity: 100%;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;}
+    text-align: center;
+}
 
 .inputBox input {
     background: transparent;
@@ -100,9 +112,9 @@ input::placeholder {
 }
 
 .submit-container {
-display: flex;
-gap: 30px;
-margin: 60px auto;
+    display: flex;
+    gap: 30px;
+    margin: 60px auto;
 }
 
 .submit {
@@ -114,11 +126,12 @@ margin: 60px auto;
     color: rgb(255, 255, 255);
     background: #ffaace;
     border-radius: 50px;
-    font-size: 19px;
+    font-size: 25px;
+    letter-spacing: 1px;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0px 2px 5px rgb(255, 153, 201);
-
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
     transition: transform 0.5s, background-color 0.5s;
 }
 
@@ -128,18 +141,18 @@ margin: 60px auto;
 }
 
 .blob {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 500px;
     height: 500px;
     z-index: -1;
 }
 
 .blobdos {
-    position: fixed; 
-    top: 0; 
-    right: 0; 
+    position: fixed;
+    top: 0;
+    right: 0;
     width: 500px;
     height: 500px;
     z-index: -1;

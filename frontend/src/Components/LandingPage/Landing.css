@@ -14,13 +14,9 @@
     background: #f8e5ed;
 }
 
-.headerLogin {
-    
-}
+.headerLogin {}
 
-.textLogin {
-  
-}
+.textLogin {}
 
 .navbar {
     display: flex;
@@ -151,6 +147,7 @@
     .overlay a {
         font-size: 20px;
     }
+
     .overlay .close {
         font-size: 40px;
         top: 15px;
@@ -160,10 +157,12 @@
 }
 
 @media only screen and (max-width: 820px) {
+
     .nav__links,
     .cta {
         display: none;
     }
+
     .menu {
         display: initial;
     }
