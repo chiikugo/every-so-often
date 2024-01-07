@@ -6,57 +6,76 @@
 
 * {
     font-family: "motley-forces";
+    letter-spacing: 1px;
+    font-size: 25px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .containerLogin {
-    width: 100%;
-    min-height: 100vh;
-    background: #f8e5ed;
+    background-color: white;
 }
 
-.headerLogin {}
-
-.textLogin {}
 
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: #f03784;
-    padding: 30px 10%;
-}
-
-.navbar ul img {
-    transition: 0.5s;
-}
-
-.navbar ul img:hover {
-    transform: translateY(-10px);
-}
-
-#elephantLogo {
-    cursor: pointer;
-    transition: 0.5s;
-    margin-bottom: -10px;
+    justify-content: space-between;
+    background-color: #F178A6;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    width: 100%;
 }
 
 #elephantLogo:hover {
     transform: translateY(-10px);
 }
 
-.navbar ul li {
-    display: inline-block;
-    list-style: none;
-    margin: 10px 100px;
-    font-size: 30px;
+#elephantLogo {
+    cursor: pointer;
+    transition: 0.5s;
+    margin-left: 30px;
 }
 
-.navBarText {
+.nav__links a,
+.cta,
+.overlay__content a {
+    color: #edf0f1;
     text-decoration: none;
-    color: #ffffff;
+}
+
+.nav__links {
+    list-style: none;
+    display: flex;
+}
+
+.nav__links li {}
+
+.nav__links li a {
+    transition: color 0.3s ease 0s;
+    text-shadow: 2px 2px 2px #000000;
     font-size: 35px;
-    font-weight: 900;
-    text-shadow: 1px 1px 4px black;
+}
+
+.nav__links li a:hover {
+    color: rgba(255, 235, 253, 0.8);
+    cursor: pointer;
+}
+
+.cta {
+    padding: 9px 25px;
+    margin-right: 30px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease 0s;
+    color: #000000;
+}
+
+.cta:hover {
+    background-color: rgba(255, 235, 253, 0.8);
 }
 
 .contacts {
@@ -105,7 +124,7 @@
     z-index: 1;
     left: 0;
     top: 0;
-    background-color: #a04068;
+    background-color: #bb5f82;
     overflow-x: hidden;
     transition: width 0.5s ease 0s;
 }
@@ -131,7 +150,7 @@
 
 .overlay a:hover,
 .overlay a:focus {
-    color: #c37495;
+    color: #4e083e;
 }
 
 .overlay .close {
@@ -152,11 +171,10 @@
         font-size: 40px;
         top: 15px;
         right: 35px;
-        cursor: pointer;
     }
 }
 
-@media only screen and (max-width: 820px) {
+@media only screen and (max-width: 800px) {
 
     .nav__links,
     .cta {

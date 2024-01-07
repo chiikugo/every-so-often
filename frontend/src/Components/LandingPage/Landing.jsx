@@ -1,5 +1,4 @@
-// Landing.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Landing.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -12,8 +11,37 @@ const Landing = () => {
     const [contacts, setContacts] = useState([]);
     const navigate = useNavigate();
 
+    // Refs for DOM elements
+    const menuOpen = useRef(null);
+    const menuClose = useRef(null);
+    const overlay = useRef(null);
+
     useEffect(() => {
         fetchContacts();
+
+        // Function to add the active class
+        const openOverlay = () => {
+            overlay.current.classList.add("overlay--active");
+        };
+
+        // Function to remove the active class
+        const closeOverlay = () => {
+            overlay.current.classList.remove("overlay--active");
+        };
+
+        // Adding event listeners
+        if (menuOpen.current && menuClose.current && overlay.current) {
+            menuOpen.current.addEventListener("click", openOverlay);
+            menuClose.current.addEventListener("click", closeOverlay);
+        }
+
+        // Cleanup function to remove event listeners
+        return () => {
+            if (menuOpen.current && menuClose.current) {
+                menuOpen.current.removeEventListener("click", openOverlay);
+                menuClose.current.removeEventListener("click", closeOverlay);
+            }
+        };
     }, []);
 
     const fetchContacts = async () => {
@@ -44,33 +72,43 @@ const Landing = () => {
 
     }
 
-    const suggestionReload= ()=>{
+    const suggestionReload = () => {
         navigate('/suggestion');
     }
+
+    const redirectToContacts = () => {
+        navigate('/contacts');
+    };
+
+    const redirectToJournal = () => {
+        navigate('/journal');
+    };
 
     return (
         <div className="containerLogin">
             <div className="headerLogin">
                 <div className="textLogin">
-                    <nav className="navbar">
-                        <ul>
-                            <img id="elephantLogo" src={elephants} alt="elephantlogo" onClick={homeReload} />
-                            <li>
-                                <a className="navBarText" onClick={contactReload}>Contacts</a>
-                            </li>
-                            <li>
-                                <a className="navBarText" onClick = {journalReload}>Journal</a>
-                            </li>
-                            <li>
-                                <a className="navBarText" onClick = {suggestionReload}>Suggestion</a>
-                            </li>
-                        </ul>
-                    </nav>
-
+                    <header className="navbar">
+                        <a class="elephantLogo" href="/"><img id="elephantLogo" src={elephants} alt="elephant logo" onClick={homeReload} /></a>
+                        <nav>
+                            <ul class="nav__links">
+                                <li><a className="navBarText" onClick={contactReload}>Contacts</a></li>
+                                <li><a className="navBarText" onClick={journalReload}>Journal</a></li>
+                            </ul>
+                        </nav>
+                        <a class="cta" href="#" onClick={suggestionReload}>Suggestions</a>
+                        <p ref={menuOpen} class="menu cta">Menu</p>
+                    </header>
+                    <div ref={overlay} class="overlay">
+                        <a ref={menuClose} class="close">&times;</a>
+                        <div class="overlay__content">
+                            <a href="#" onClick={redirectToContacts}>Contacts</a>
+                            <a href="#" onClick={redirectToJournal}>Journal</a>
+                        </div>
+                    </div>
                     <div className="buttons">
                         <div className="contactButtonOne">
 
-                        
                             <div className="contacts">
                                 <div className="contactButton" onClick={() => setButtonPopup(true)}>
                                     Contacts
@@ -87,7 +125,7 @@ const Landing = () => {
                                         <AddContactForm onAddContact={handleAddContact} />
                                     </Contactpopup>
                                 )}
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>

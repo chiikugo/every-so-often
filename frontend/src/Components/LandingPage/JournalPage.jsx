@@ -106,31 +106,24 @@ const JournalPage = () => {
     <div className="containerLogin">
       <div className="headerLogin">
         <div className="textLogin">
-          <nav className="navbar">
-            <ul>
-              <img
-                id="elephantLogo"
-                src={elephants}
-                alt="elephantlogo"
-                onClick={homeReload}
-              />
-              <li>
-                <a className="navBarText" onClick={contactReload}>
-                  Contacts
-                </a>
-              </li>
-              <li>
-                <a className="navBarText" onClick={journalReload}>
-                  Journal
-                </a>
-              </li>
-              <li>
-                <a className="navBarText" onClick={suggestionReload}>
-                  Suggestion
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <header className="navbar">
+            <a class="elephantLogo" href="/"><img id="elephantLogo" src={elephants} alt="elephant logo" onClick={homeReload} /></a>
+            <nav>
+              <ul class="nav__links">
+                <li><a className="navBarText" onClick={contactReload}>Contacts</a></li>
+                <li><a className="navBarText" onClick={journalReload}>Journal</a></li>
+              </ul>
+            </nav>
+            <a class="cta" href="#" onClick={suggestionReload}>Suggestions</a>
+            <p class="menu cta">Menu</p>
+          </header>
+          <div class="overlay">
+            <a class="close">&times;</a>
+            <div class="overlay__content">
+              <a href="#">Contacts</a>
+              <a href="#">Journal</a>
+            </div>
+          </div>
           <div className="journalBody">
             <form
               className="NoteForm"

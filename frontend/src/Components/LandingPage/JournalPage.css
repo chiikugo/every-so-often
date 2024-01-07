@@ -3,24 +3,18 @@
     font-family: "motley-forces";
     src: url(../Assets/MotleyForcesRegular-w1rZ3.ttf);
 }
+
 * {
-font-family: "motley-forces";
-
+    font-family: "motley-forces";
+    letter-spacing: 1px;
+    font-size: 25px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-
-.containerLogin {
-    width: 100%;
-    min-height: 100vh;
-    background: #f8e5ed;
-}
-
-.headerLogin {
-    
-}
-
-.textLogin {
-  
+.landingBody {
+    background-color: white;
 }
 
 
@@ -28,38 +22,57 @@ font-family: "motley-forces";
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #de6195; 
+    background-color: #ffcaec;
     padding-bottom: 5px;
     box-shadow: 2px 2px 5px #ffcaec;
     width: 100%;
-
 }
 
-.navbar ul img {
-    transition: 0.5s;
-}
-
-.navbar ul img:hover {
+#elephantLogo:hover {
     transform: translateY(-10px);
 }
 
-#elephantLogo{
+#elephantLogo {
+    cursor: pointer;
+    transition: 0.5s;
     margin-bottom: -10px;
 }
 
-.navbar ul li {
-    display: inline-block;
-    list-style: none;
-    margin: 10px 100px;
-    font-size: 30px;
-
+.nav__links a,
+.cta,
+.overlay__content a {
+    color: #edf0f1;
+    text-decoration: none;
 }
 
-.navBarText {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-weight: 900;
-    text-shadow: 1px 1px 4px rgb(255, 176, 176);
+.nav__links {
+    list-style: none;
+    display: flex;
+}
+
+.nav__links li {
+    padding: 0px 20px;
+}
+
+.nav__links li a {
+    transition: color 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+    color: #0088a9;
+}
+
+.cta {
+    padding: 9px 25px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease 0s;
+}
+
+.cta:hover {
+    background-color: rgba(0, 136, 169, 0.8);
 }
 
 .contacts {
@@ -71,7 +84,7 @@ font-family: "motley-forces";
     border-radius: 6px;
     font-size: 50px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: black;
 }
 
 .contactButton {
@@ -95,6 +108,80 @@ font-family: "motley-forces";
     transform: translateY(-5px);
 }
 
+/* Mobile Nav */
+
+.menu {
+    display: none;
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: #24252a;
+    overflow-x: hidden;
+    transition: width 0.5s ease 0s;
+}
+
+.overlay--active {
+    width: 100%;
+}
+
+.overlay__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay a {
+    padding: 15px;
+    font-size: 36px;
+    display: block;
+    transition: color 0.3s ease 0s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #0088a9;
+}
+
+.overlay .close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: #edf0f1;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px;
+    }
+
+    .overlay .close {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    .nav__links,
+    .cta {
+        display: none;
+    }
+
+    .menu {
+        display: initial;
+    }
+}
+
 @media (min-width: 600px) {
     .journalBody {
         justify-content: center;
@@ -106,13 +193,11 @@ font-family: "motley-forces";
 }
 
 .journalGrid {
-     display: grid;
-     grid-template-columns: repeat(
-        auto-fill,
-        minmax(250px, 1fr)
-     );
-     grid-auto-rows: minmax(250px, auto);
-     gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,
+            minmax(250px, 1fr));
+    grid-auto-rows: minmax(250px, auto);
+    gap: 20px;
 
 }
 
@@ -140,9 +225,9 @@ font-family: "motley-forces";
 
 }
 
- h2 {
+h2 {
     margin: 0;
- }
+}
 
 .noteForm {
 
@@ -151,14 +236,15 @@ font-family: "motley-forces";
     gap: 20px;
 }
 
-textarea, input {
+textarea,
+input {
     border-radius: 5px;
     border: 1px solid black;
     padding: 10px;
     font-size: 16px;
 }
 
-.noteForm button{
+.noteForm button {
     border-radius: 5px;
     background-color: #de6195;
     border: none;
