@@ -1,10 +1,43 @@
 // Landing.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './JournalPage.css';
 import { useNavigate } from 'react-router-dom';
 import elephants from '../Assets/Untitled_Artwork16.PNG';
 
 const JournalPage = () => {
+
+  // Refs for DOM elements
+  const menuOpen = useRef(null);
+  const menuClose = useRef(null);
+  const overlay = useRef(null);
+
+  useEffect(() => {
+
+    // Function to add the active class
+    const openOverlay = () => {
+      overlay.current.classList.add("overlay--active");
+    };
+
+    // Function to remove the active class
+    const closeOverlay = () => {
+      overlay.current.classList.remove("overlay--active");
+    };
+
+    // Adding event listeners
+    if (menuOpen.current && menuClose.current && overlay.current) {
+      menuOpen.current.addEventListener("click", openOverlay);
+      menuClose.current.addEventListener("click", closeOverlay);
+    }
+
+    // Cleanup function to remove event listeners
+    return () => {
+      if (menuOpen.current && menuClose.current) {
+        menuOpen.current.removeEventListener("click", openOverlay);
+        menuClose.current.removeEventListener("click", closeOverlay);
+      }
+    };
+  }, []);
+
   const [notes, setNotes] = useState([
     {
       id: 1,
@@ -102,6 +135,14 @@ const JournalPage = () => {
     navigate('../suggestion');
   };
 
+  const redirectToContacts = () => {
+    navigate('/contacts');
+  };
+
+  const redirectToJournal = () => {
+    navigate('/journal');
+  };
+
   return (
     <div className="containerLogin">
       <div className="headerLogin">
@@ -115,13 +156,13 @@ const JournalPage = () => {
               </ul>
             </nav>
             <a class="cta" href="#" onClick={suggestionReload}>Suggestions</a>
-            <p class="menu cta">Menu</p>
+            <p ref={menuOpen} class="menu cta">Menu</p>
           </header>
-          <div class="overlay">
-            <a class="close">&times;</a>
+          <div ref={overlay} class="overlay">
+            <a ref={menuClose} class="close">&times;</a>
             <div class="overlay__content">
-              <a href="#">Contacts</a>
-              <a href="#">Journal</a>
+              <a href="#" onClick={redirectToContacts}>Contacts</a>
+              <a href="#" onClick={redirectToJournal}>Journal</a>
             </div>
           </div>
           <div className="journalBody">

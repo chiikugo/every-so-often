@@ -1,5 +1,5 @@
 // Landing.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ContactPage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -7,9 +7,42 @@ import elephants from '../Assets/Untitled_Artwork16.PNG';
 
 
 const ContactPage = () => {
-    const [setButtonPopup] = useState(false);
-    const [setContacts] = useState([]);
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [contacts, setContacts] = useState([]);
     const navigate = useNavigate();
+
+    // Refs for DOM elements
+    const menuOpen = useRef(null);
+    const menuClose = useRef(null);
+    const overlay = useRef(null);
+
+    useEffect(() => {
+        fetchContacts();
+
+        // Function to add the active class
+        const openOverlay = () => {
+            overlay.current.classList.add("overlay--active");
+        };
+
+        // Function to remove the active class
+        const closeOverlay = () => {
+            overlay.current.classList.remove("overlay--active");
+        };
+
+        // Adding event listeners
+        if (menuOpen.current && menuClose.current && overlay.current) {
+            menuOpen.current.addEventListener("click", openOverlay);
+            menuClose.current.addEventListener("click", closeOverlay);
+        }
+
+        // Cleanup function to remove event listeners
+        return () => {
+            if (menuOpen.current && menuClose.current) {
+                menuOpen.current.removeEventListener("click", openOverlay);
+                menuClose.current.removeEventListener("click", closeOverlay);
+            }
+        };
+    }, []);
 
     useEffect(() => {
         fetchContacts();
@@ -45,6 +78,14 @@ const ContactPage = () => {
         navigate('../suggestion');
     }
 
+    const redirectToContacts = () => {
+        navigate('/contacts');
+    };
+
+    const redirectToJournal = () => {
+        navigate('/journal');
+    };
+
 
     return (
         <div className="containerLogin">
@@ -59,13 +100,13 @@ const ContactPage = () => {
                             </ul>
                         </nav>
                         <a class="cta" href="#" onClick={suggestionReload}>Suggestions</a>
-                        <p class="menu cta">Menu</p>
+                        <p ref={menuOpen} class="menu cta">Menu</p>
                     </header>
-                    <div class="overlay">
-                        <a class="close">&times;</a>
+                    <div ref={overlay} class="overlay">
+                        <a ref={menuClose} class="close">&times;</a>
                         <div class="overlay__content">
-                            <a href="#">Contacts</a>
-                            <a href="#">Journal</a>
+                            <a href="#" onClick={redirectToContacts}>Contacts</a>
+                            <a href="#" onClick={redirectToJournal}>Journal</a>
                         </div>
                     </div>
                     <div className="Placeholder">
