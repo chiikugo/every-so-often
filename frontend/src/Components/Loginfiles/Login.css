@@ -28,7 +28,7 @@ body {
     height: 80vh;
     background-color: #e8f6f7;
     border-radius: 25px;
-    box-shadow: 2px 2px 5px #ffaace;
+    box-shadow: 2px 2px 5px #000000;
     align-items: center;
 }
 
@@ -191,7 +191,7 @@ input::placeholder {
 
 .blob-motion2 {
     position: absolute;
-    bottom: 40vh;
+    bottom: 44vh;
     /* Adjust as necessary */
     right: 35vw;
     /* Adjust as necessary */
