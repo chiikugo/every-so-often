@@ -6,6 +6,7 @@
     },
     "dependencies": {
         "concurrently": "^8.2.2",
+        "kute": "^1.0.0",
         "kute.js": "^2.2.4",
         "nodemon": "^3.0.2",
         "pg": "^8.11.3",

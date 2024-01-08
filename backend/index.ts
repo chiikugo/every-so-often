@@ -18,7 +18,7 @@ app.get("/api/notes", async (req, res) => {
     
 
 
-})
+});
 
 
 
@@ -46,10 +46,55 @@ app.post("/api/notes", async(req, res) => {
 
 
     
-})
+});
 
+app.put("/api/notes/:id", async(req, res)=> {
+    const {title, content} = req.body;
+    const id = parseInt(req.params.id);
+
+    if (!id || isNaN(id)) {
+        return res
+        .status(400)
+        .send("ID NEEDS TO BE VALID!!");
+    }
+
+    try {
+        const updatedNote = await prisma.note.update({
+            where: { id },
+            data: {title, content}
+        })
+        
+    } catch (error) {
+        res
+        .status(500)
+        .send("Error!");
+        
+    }
+});
+
+app.delete("/api/notes/:id", async (req, res)=> {
+    const id = parseInt(req.params.id);
+
+    if (!id || isNaN(id)) {
+        return res
+        .status(400)
+        .send("ID must be a valid int");
+        
+    }
+
+    try {
+        await prisma.note.delete({
+            where: { id }
+        });
+        res.status(204).send();
+    } catch (error) {
+        res
+        .status(500)
+        .send("oops, there was an error!");
+    }
+})
 app.listen(5003, ()=> {
 
-    console.log("server running on localhost:5002")
+    console.log("server running on localhost:5003")
 
 })

@@ -1,18 +1,15 @@
-// Landing.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './JournalPage.css';
 import { useNavigate } from 'react-router-dom';
 import elephants from '../Assets/Untitled_Artwork16.PNG';
 
 const JournalPage = () => {
-
   // Refs for DOM elements
   const menuOpen = useRef(null);
   const menuClose = useRef(null);
   const overlay = useRef(null);
 
   useEffect(() => {
-
     // Function to add the active class
     const openOverlay = () => {
       overlay.current.classList.add("overlay--active");
@@ -67,41 +64,68 @@ const JournalPage = () => {
     setContent(note.content);
   };
 
-  const handleAddNote = (event) => {
+  const handleAddNote = async (event) => {
     event.preventDefault();
 
-    const newNote = {
-      id: notes.length + 1,
-      title: title,
-      content: content,
-    };
+    try {
+      const response = await fetch(
+        "https://localhost:5003/api/notes" ,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type" : "application/json"
+          },
+          body: JSON.stringify({
+            title,
+            content
+          })
+        }
+      );
 
-    setNotes([newNote, ...notes]);
-    setTitle("");
-    setContent("");
+      const newNote = await response.json();
+      setNotes([newNote, ...notes]);
+      setTitle("");
+      setContent("");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const handleUpdateNote = (event) => {
+  const handleUpdateNote = async (event) => {
     event.preventDefault();
 
     if (!selectedNote) {
       return;
     }
 
-    const updatedNote = {
-      id: selectedNote.id,
-      title: title,
-      content: content,
-    };
+    try {
+      const response = await fetch(
+        `https://localhost:5003/api/notes/${selectedNote.id}`, 
+        {
+          method: 'PUT',
+          headers: {
+            "Content-Type" : "application/json"
+          },
+          body: JSON.stringify({
+            title, 
+            content,
+          })
+        }
+      )
 
-    const updatedNotesList = notes.map((note) =>
-      note.id === selectedNote.id ? updatedNote : note
-    );
+      const updatedNote = await response.json();
 
-    setNotes(updatedNotesList);
-    setTitle("");
-    setContent("");
-    setSelectedNote(null);
+      const updatedNotesList = notes.map((note) =>
+        note.id === selectedNote.id ? updatedNote : note
+      );
+
+      setNotes(updatedNotesList);
+      setTitle("");
+      setContent("");
+      setSelectedNote(null);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleCancel = () => {
@@ -110,12 +134,38 @@ const JournalPage = () => {
     setSelectedNote(null);
   };
 
-  const deleteNote = (event, noteId) => {
+  const deleteNote =  async (event, noteId) => {
     event.stopPropagation();
 
-    const updatedNotes = notes.filter((note) => note.id !== noteId);
-    setNotes(updatedNotes);
+    try {
+      await fetch(
+        `https://localhost:5003/api/notes/${noteId}`,
+        {
+          method: "DELETE",
+        }
+      )
+
+      const updatedNotes = notes.filter((note) => note.id !== noteId);
+      setNotes(updatedNotes);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const response = await fetch("http://localhost:5003/api/notes");
+        const data = await response.json();
+
+        setNotes(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchNotes();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -148,19 +198,19 @@ const JournalPage = () => {
       <div className="headerLogin">
         <div className="textLogin">
           <header className="navbar">
-            <a class="elephantLogo" href="/"><img id="elephantLogo" src={elephants} alt="elephant logo" onClick={homeReload} /></a>
+            <a className="elephantLogo" href="/"><img id="elephantLogo" src={elephants} alt="elephant logo" onClick={homeReload} /></a>
             <nav>
-              <ul class="nav__links">
+              <ul className="nav__links">
                 <li><a className="navBarText" onClick={contactReload}>Contacts</a></li>
                 <li><a className="navBarText" onClick={journalReload}>Journal</a></li>
               </ul>
             </nav>
-            <a class="cta" href="#" onClick={suggestionReload}>Suggestions</a>
-            <p ref={menuOpen} class="menu cta">Menu</p>
+            <a className="cta" href="#" onClick={suggestionReload}>Suggestions</a>
+            <p ref={menuOpen} className="menu cta">Menu</p>
           </header>
-          <div ref={overlay} class="overlay">
-            <a ref={menuClose} class="close">&times;</a>
-            <div class="overlay__content">
+          <div ref={overlay} className="overlay">
+            <a ref={menuClose} className="close">&times;</a>
+            <div className="overlay__content">
               <a href="#" onClick={redirectToContacts}>Contacts</a>
               <a href="#" onClick={redirectToJournal}>Journal</a>
             </div>
@@ -191,9 +241,12 @@ const JournalPage = () => {
                   <button onClick={handleCancel}>Cancel</button>
                 </div>
               ) : (
-                <button type="submit">Add Note</button>
+                <div>
+                  <button type="submit">Add Note</button>
+                  <button onClick={handleCancel}>Cancel</button>
+                </div>
               )}
-              <button className="publish">Add Entry</button>
+              <button type="submit">Add Entry</button>
             </form>
             <div className="journalGrid">
               {notes.map((note) => (
