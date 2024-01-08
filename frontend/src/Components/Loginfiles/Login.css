@@ -141,19 +141,63 @@ input::placeholder {
 }
 
 .blob {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 500px;
-    height: 500px;
+    width: 1000px;
+    height: 1000px;
     z-index: -1;
 }
 
-.blobdos {
-    position: fixed;
+.blob2 {
+    position: absolute;
     top: 0;
     right: 0;
-    width: 500px;
-    height: 500px;
+    width: 1000px;
+    height: 1000px;
+    z-index: -1;
+}
+
+.blob {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    height: 1000px;
+    z-index: -1;
+}
+
+.blob2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1000px;
+    height: 5px;
+    z-index: -1;
+}
+
+.blob-motion1 {
+    position: absolute;
+    top: 0;
+    /* Adjust as necessary */
+    left: 0;
+    /* Adjust as necessary */
+    width: 200%;
+    /* Adjust as necessary */
+    height: 200%;
+    /* Adjust as necessary */
+    z-index: -1;
+}
+
+.blob-motion2 {
+    position: absolute;
+    bottom: 40vh;
+    /* Adjust as necessary */
+    right: 35vw;
+    /* Adjust as necessary */
+    width: 100%;
+    /* Adjust as necessary */
+    height: 100%;
+    /* Adjust as necessary */
     z-index: -1;
 }
