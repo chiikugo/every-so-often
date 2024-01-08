@@ -69,7 +69,7 @@ const JournalPage = () => {
 
     try {
       const response = await fetch(
-        "https://localhost:5003/api/notes" ,
+        "http://localhost:5003/api/notes" ,
         {
           method: "POST",
           headers: {
@@ -100,7 +100,7 @@ const JournalPage = () => {
 
     try {
       const response = await fetch(
-        `https://localhost:5003/api/notes/${selectedNote.id}`, 
+        `http://localhost:5003/api/notes/${selectedNote.id}`, 
         {
           method: 'PUT',
           headers: {
@@ -139,7 +139,7 @@ const JournalPage = () => {
 
     try {
       await fetch(
-        `https://localhost:5003/api/notes/${noteId}`,
+        `http://localhost:5003/api/notes/${noteId}`,
         {
           method: "DELETE",
         }

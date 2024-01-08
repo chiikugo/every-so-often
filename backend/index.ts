@@ -5,96 +5,76 @@ import { PrismaClient } from "@prisma/client";
 const app = express();
 const prisma = new PrismaClient();
 
-app.use(express.json())
-app.use(cors())
-
-
+app.use(express.json());
+app.use(cors({
+  origin: "http://localhost:3000", // Replace with your frontend's domain
+  // other options...
+}));
 
 app.get("/api/notes", async (req, res) => {
-    
-    const notes = await prisma.note.findMany();
-    
-    res.json(notes);
-    
-
-
+  const notes = await prisma.note.findMany();
+  res.json(notes);
 });
 
+app.post("/api/notes", async (req, res) => {
+  const { title, content } = req.body;
 
+  if (!title || !content) {
+    return res
+      .status(400)
+      .send("Title and content required");
+  }
 
-app.post("/api/notes", async(req, res) => {
-    const {title, content} = req.body;
-
-    if (!title || !content) {
-        return res
-        .status(400)
-        .send("title and content required");
-    }
-    
-    try {
-        const note = await prisma.note.create({
-            data: {title, content}
-        })
-        res.json(note);
-        
-    } catch (error) {
-        res.
-        status(500)
-        .send("error please backtrack");
-        
-    }
-
-
-    
+  try {
+    const note = await prisma.note.create({
+      data: { title, content }
+    });
+    res.json(note);
+  } catch (error) {
+    res.status(500).send("Error creating note");
+  }
 });
 
-app.put("/api/notes/:id", async(req, res)=> {
-    const {title, content} = req.body;
-    const id = parseInt(req.params.id);
+app.put("/api/notes/:id", async (req, res) => {
+  const { title, content } = req.body;
+  const id = parseInt(req.params.id);
 
-    if (!id || isNaN(id)) {
-        return res
-        .status(400)
-        .send("ID NEEDS TO BE VALID!!");
-    }
+  if (!id || isNaN(id)) {
+    return res
+      .status(400)
+      .send("ID needs to be valid");
+  }
 
-    try {
-        const updatedNote = await prisma.note.update({
-            where: { id },
-            data: {title, content}
-        })
-        
-    } catch (error) {
-        res
-        .status(500)
-        .send("Error!");
-        
-    }
+  try {
+    const updatedNote = await prisma.note.update({
+      where: { id },
+      data: { title, content }
+    });
+    res.json(updatedNote);
+  } catch (error) {
+    res.status(500).send("Error updating note");
+  }
 });
 
-app.delete("/api/notes/:id", async (req, res)=> {
-    const id = parseInt(req.params.id);
+app.delete("/api/notes/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
 
-    if (!id || isNaN(id)) {
-        return res
-        .status(400)
-        .send("ID must be a valid int");
-        
-    }
+  if (!id || isNaN(id)) {
+    return res
+      .status(400)
+      .send("ID must be a valid int");
+  }
 
-    try {
-        await prisma.note.delete({
-            where: { id }
-        });
-        res.status(204).send();
-    } catch (error) {
-        res
-        .status(500)
-        .send("oops, there was an error!");
-    }
-})
-app.listen(5003, ()=> {
+  try {
+    await prisma.note.delete({
+      where: { id }
+    });
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).send("Error deleting note");
+  }
+});
 
-    console.log("server running on localhost:5003")
-
-})
+app.listen(5003, () => {
+  console.log("Server running on http://localhost:5003");
+});
