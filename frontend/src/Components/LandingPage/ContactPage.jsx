@@ -1,6 +1,7 @@
 // Landing.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './ContactPage.css';
+import './contactTable.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import elephants from '../Assets/Untitled_Artwork16.PNG';
@@ -15,6 +16,19 @@ const ContactPage = () => {
     const menuOpen = useRef(null);
     const menuClose = useRef(null);
     const overlay = useRef(null);
+
+    const [rows, setRows] = useState([{ firstName: '', lastName: '', callReminder: 'weekly' }]);
+
+    const handleInputChange = (index, event) => {
+        const { name, value } = event.target;
+        const newRows = [...rows];
+        newRows[index][name] = value;
+        setRows(newRows);
+    };
+
+    const addRow = () => {
+        setRows([...rows, { firstName: '', lastName: '', callReminder: 'weekly' }]);
+    };
 
     useEffect(() => {
         fetchContacts();
@@ -88,7 +102,7 @@ const ContactPage = () => {
 
 
     return (
-        <div className="containerLogin">
+        <div id="containerLoginContacts">
             <div className="headerLogin">
                 <div className="textLogin">
                     <header className="navbar">
@@ -109,21 +123,55 @@ const ContactPage = () => {
                             <a href="#" onClick={redirectToJournal}>Journal</a>
                         </div>
                     </div>
-                    <div className="Placeholder">
-                        <p>
-                            test test placeholder for our contact features,
-                            probably add deletion
-                            timeline
-                            maybe nice looking photobook,
-                            we'll see
-                        </p>
-
+                    <div id="tableDiv">
+                        <table id="contactTable">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Call Reminder</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rows.map((row, index) => (
+                                    <tr key={index}>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name="firstName"
+                                                value={row.firstName}
+                                                onChange={(e) => handleInputChange(index, e)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name="lastName"
+                                                value={row.lastName}
+                                                onChange={(e) => handleInputChange(index, e)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <select
+                                                name="callReminder"
+                                                value={row.callReminder}
+                                                onChange={(e) => handleInputChange(index, e)}
+                                            >
+                                                <option value="weekly">Weekly</option>
+                                                <option value="bi-weekly">Bi-Weekly</option>
+                                                <option value="monthly">Monthly</option>
+                                                <option value="every 2 months">Every 2 Months</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <button onClick={addRow}>Add Row</button>
                     </div>
-
                 </div>
             </div>
         </div>
-
     );
 };
 
