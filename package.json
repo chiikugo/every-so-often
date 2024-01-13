@@ -1,8 +1,11 @@
 {
     "name": "every_so_often",
     "version": "1.0.0",
+    "homepage": "https://chiikugo.github.io/every-so-often",
     "scripts": {
-        "start": "concurrently \"cd frontend && npm start\" \"cd backend && nodemon index.ts\""
+        "start": "concurrently \"cd frontend && npm start\" \"cd backend && nodemon index.ts\"",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "dependencies": {
         "concurrently": "^8.2.2",
@@ -11,5 +14,8 @@
         "nodemon": "^3.0.2",
         "pg": "^8.11.3",
         "react-scripts": "^5.0.1"
+    },
+    "devDependencies": {
+        "gh-pages": "^6.1.1"
     }
 }
